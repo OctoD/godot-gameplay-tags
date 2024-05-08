@@ -1,1 +1,1 @@
-pub mod editor_plugin;
+pub mod tag_dictionary_editor;
