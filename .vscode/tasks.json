@@ -1,0 +1,46 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run in godot",
+            "type": "shell",
+            "icon": {
+                "color": "terminal.ansiCyan",
+                "id": "run"
+            },
+            "command": "godot godot/project.godot"
+        },
+        {
+            "type": "cargo",
+            "command": "build",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": "build",
+            "label": "rust: build gdextension"
+        },
+        {
+            "dependsOn": [
+                "rust: build gdextension",
+                "run in godot"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "label": "build and run"
+        },
+        {
+            "type": "cargo",
+            "command": "test",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": "test",
+            "label": "rust: cargo test"
+        }
+    ]
+}
