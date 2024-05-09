@@ -7,24 +7,6 @@ use crate::tag_dictionary::TagDictionary;
 #[class(tool, init, base = EditorInspectorPlugin)]
 pub struct TagDictionaryEditorInspectorPlugin {
     base: Base<EditorInspectorPlugin>,
-    #[var]
-    tag_dictionary: Option<Gd<TagDictionary>>,
-    #[var]
-    tree: Option<Gd<Tree>>,
-}
-
-impl TagDictionaryEditorInspectorPlugin {
-    fn render(&mut self, dict: &Gd<TagDictionary>, mut tree: Gd<Tree>) {
-        tree.clear();
-
-        if let Some(mut root) = tree.create_item() {
-            for tag in dict.bind().get_tags().as_slice() {
-                if let Some(mut item) = root.create_child() {
-                    item.set_text(0, tag.clone());
-                }
-            }
-        }
-    }
 }
 
 #[godot_api]
@@ -43,24 +25,23 @@ impl IEditorInspectorPlugin for TagDictionaryEditorInspectorPlugin {
         _usage_flags: godot::engine::global::PropertyUsageFlags,
         _wide: bool,
     ) -> bool {
-        self.tag_dictionary = _object.try_cast::<TagDictionary>().map_or(None, Some);
-        self.tree = Some(Tree::new_alloc());
+        let mut tree = Tree::new_alloc();
+        let tag_dictionary = _object
+            .try_cast::<TagDictionary>()
+            .expect("Failed to cast to TagDictionary");
 
-        self.to_gd().add_custom_control(
-            self.tree
-                .to_variant()
-                .to::<Gd<godot::engine::Control>>(),
-        );
+        self.to_gd()
+            .add_custom_control(tree.to_variant().to::<Gd<godot::engine::Control>>());
 
-        if self.tag_dictionary.as_ref().and(self.tree.as_ref()).is_none() {
-            return false;
-        }
+        let tags = tag_dictionary.bind().get_tags();
 
-        let callable = Callable::from_fn("tagdictionary_changed", |_: &[&Variant]| {
-            Ok(Variant::nil())
-        });
+        // let mut root = tree.create_item().expect("Root item not created");
 
-        self.tag_dictionary.as_mut().unwrap().connect(StringName::from("changed"), callable);
+        // for tag in tags.as_slice() {
+        //     let mut item = root.create_child().expect("Child item not created");
+
+        //     item.set_text(0, tag.clone());
+        // }
 
         true
     }
