@@ -1,6 +1,7 @@
 mod editor;
 mod tag_manager;
 mod tag_dictionary;
+mod importers;
 
 use godot::{engine::Engine, prelude::*};
 
