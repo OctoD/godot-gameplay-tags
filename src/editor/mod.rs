@@ -1,4 +1,5 @@
 pub mod ui;
+mod tag_dictionary_fs;
 
 use godot::{engine::{EditorPlugin, IEditorPlugin}, prelude::*};
 

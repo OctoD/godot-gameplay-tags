@@ -1,0 +1,4 @@
+[gd_resource type="TagDictionary" format=3 uid="uid://dkt3uq3vir5qw"]
+
+[resource]
+tags = PackedStringArray("foo", "bar", "baz")
