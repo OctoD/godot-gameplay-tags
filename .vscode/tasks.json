@@ -10,6 +10,11 @@
                 "color": "terminal.ansiCyan",
                 "id": "run"
             },
+            "options": {
+                "env": {
+                    "RUST_BACKTRACE": "1"
+                }
+            },
             "command": "godot godot/project.godot"
         },
         {
