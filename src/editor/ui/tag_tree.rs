@@ -41,14 +41,6 @@ impl TagTree {
     #[signal]
     pub fn tag_path_removed(tag: String);
 
-    pub fn _set_editable(&mut self, editable: bool) {
-        self.editable = editable;
-    }
-
-    pub fn _set_tag_dictionary(&mut self, tag_dictionary: Option<Gd<TagDictionary>>) {
-        self.tag_dictionary = tag_dictionary;
-    }
-
     /// Gets whether the tag tree is editable.
     #[func]
     pub fn get_editable(&self) -> bool {
@@ -64,14 +56,14 @@ impl TagTree {
     /// Sets whether the tag tree is editable.
     #[func]
     pub fn set_editable(&mut self, editable: bool) {
-        self._set_editable(editable);
+        self.editable = editable;
         self.render_tree();
     }
 
     /// Sets the tag dictionary to display.
     #[func]
     pub fn set_tag_dictionary(&mut self, tag_dictionary: Option<Gd<TagDictionary>>) {
-        self._set_tag_dictionary(tag_dictionary);
+        self.tag_dictionary = tag_dictionary;
         self.render_tree();
     }
 
@@ -98,12 +90,7 @@ impl TagTree {
                 let new_tag = if tag_path.clone().to_string().is_empty() {
                     new_tag_name
                 } else {
-                    format!(
-                        "{}{}{}",
-                        tag_path.to_string(),
-                        SPLIT_CHAR,
-                        new_tag_name
-                    )
+                    format!("{}{}{}", tag_path.to_string(), SPLIT_CHAR, new_tag_name)
                 };
 
                 tag_dictionary
