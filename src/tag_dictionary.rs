@@ -51,15 +51,15 @@ impl TagDictionary {
             for chunk in chunks {
                 // if current has the key, pass, otherwise current is a new dictionary
                 match current.get(chunk) {
-					Some(_dict) => {
-						current = _dict.to();
-					}
-					None => {
-						let new_dict = Dictionary::new();
-						current.set(chunk, new_dict.clone());
-						current = new_dict;
-					}
-				}
+                    Some(_dict) => {
+                        current = _dict.to();
+                    }
+                    None => {
+                        let new_dict = Dictionary::new();
+                        current.set(chunk, new_dict.clone());
+                        current = new_dict;
+                    }
+                }
             }
         }
 
@@ -87,7 +87,12 @@ impl TagDictionary {
 
     #[func]
     pub fn replace_tag(&mut self, old_tag: String, new_tag: String) {
-        if let Some(index) = self.tags.as_slice().iter().position(|t| old_tag == t.to_string()) {
+        if let Some(index) = self
+            .tags
+            .as_slice()
+            .iter()
+            .position(|t| old_tag == t.to_string())
+        {
             self.tags.set(index, new_tag.into());
             self.base_mut().emit_changed();
         }
@@ -113,6 +118,22 @@ impl TagDictionary {
     pub fn remove_tag(&mut self, tag: GString) {
         if let Some(index) = self.tags.as_slice().iter().position(|t| tag.eq(t)) {
             self.tags.remove(index);
+            self.base_mut().emit_changed();
+        }
+    }
+
+    #[func]
+    pub fn remove_path(&mut self, path: String) {
+        let mut count = 0;
+
+        for tag in self.tags.clone().as_slice() {
+            if tag.to_string().starts_with(&path) {
+                self.remove_tag(tag.to_owned());
+                count += 1;
+            }
+        }
+
+        if count > 0 {
             self.base_mut().emit_changed();
         }
     }
