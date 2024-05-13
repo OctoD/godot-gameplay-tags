@@ -20,15 +20,18 @@ func _ready() -> void:
 	print_tag_tree(dict.get_tree())
 	
 	var tree = TagTree.new()
-	tree.tag_edited.connect(func (old_tag, new_tag):
-		print("Old tag is "+old_tag+" and new tag is " + new_tag)
+	tree.tag_path_edited.connect(func (old_path, new_path):
+		print("Old path is "+old_path+" and new path is " + new_path)
 	)
-	tree.hide_root = true
 	tree.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	tree.set_tag_dictionary(dict)
 	tree.set_editable(true)
 
 	add_child(tree)
+	
+	dict.changed.connect(func ():
+		print_tag_tree(dict.get_tree())
+	)
 
 
 func print_tag_tree(tree: Dictionary, indent_count = 0) -> void:

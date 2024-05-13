@@ -21,18 +21,19 @@ pub struct TagTree {
 impl ITree for TagTree {
     fn ready(&mut self) {
         godot_print!("TagTree ready");
-        self.render_tree();
         self.to_gd().connect(
             StringName::from("item_edited"),
             Callable::from_object_method(&self.to_gd(), "_on_tag_edited"),
         );
+        self.to_gd().set_hide_root(true);
+        self.render_tree();
     }
 }
 
 #[godot_api]
 impl TagTree {
     #[signal]
-    pub fn tag_edited(old_tag: String, new_tag: String);
+    pub fn tag_path_edited(old_tag: String, new_tag: String);
 
     pub fn _set_editable(&mut self, editable: bool) {
         self.editable = editable;
@@ -69,7 +70,7 @@ impl TagTree {
     }
 
     #[func]
-    fn _on_tag_edited(&self) {
+    fn _on_tag_edited(&mut self) {
         if let Some(edited) = self.to_gd().get_edited() {
             let meta_path = edited.get_meta(TAG_PATH_META.into()).to_string();
             let edited_chunk = edited.get_text(0).to_string();
@@ -89,10 +90,17 @@ impl TagTree {
                 format!("{}{}{}", parent_path, SPLIT_CHAR, edited_chunk.clone())
             };
 
+            if let Some(mut tag_dictionary) = self.tag_dictionary.clone() {
+                tag_dictionary
+                    .bind_mut()
+                    .update_path(meta_path.clone(), new_path.clone());
+            }
+
             self.to_gd().emit_signal(
-                "tag_edited".into(),
+                "tag_path_edited".into(),
                 &[meta_path.to_variant(), new_path.to_variant()],
             );
+            self.render_tree();
         }
     }
 
@@ -134,7 +142,7 @@ impl TagTree {
         }
     }
 
-    fn render_tree(&self) {
+    fn render_tree(&mut self) {
         self.to_gd().clear();
 
         let root = self
