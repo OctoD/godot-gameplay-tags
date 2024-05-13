@@ -1,5 +1,5 @@
 use godot::{
-    engine::{control::SizeFlags, ITree, Tree, TreeItem},
+    engine::{control::SizeFlags, tree_item::TreeCellMode, ITree, Tree, TreeItem},
     prelude::*,
 };
 
@@ -13,6 +13,8 @@ pub struct TagTree {
     base: Base<Tree>,
     /// Whether the tag tree is editable.
     editable: bool,
+    /// Whether the tag tree is selectable.
+    selectable: bool,
     /// The tag dictionary to display.
     tag_dictionary: Option<Gd<TagDictionary>>,
 }
@@ -47,16 +49,33 @@ impl TagTree {
         self.editable
     }
 
+    #[func]
+    pub fn get_selectable(&self) -> bool {
+        self.selectable
+    }
+
     /// Gets the tag dictionary to display.
     #[func]
     pub fn get_tag_dictionary(&self) -> Option<Gd<TagDictionary>> {
         self.tag_dictionary.clone()
     }
 
+    #[func]
+    pub fn is_path_selected(&self, _path: GString) -> bool {
+        false
+    }
+
     /// Sets whether the tag tree is editable.
     #[func]
     pub fn set_editable(&mut self, editable: bool) {
         self.editable = editable;
+        self.render_tree();
+    }
+
+    /// Sets whether the tag tree is selectable.
+    #[func]
+    pub fn set_selectable(&mut self, selectable: bool) {
+        self.selectable = selectable;
         self.render_tree();
     }
 
@@ -154,6 +173,14 @@ impl TagTree {
 
                         let mut item = parent.call("create_child".into(), &[]).to::<Gd<TreeItem>>();
 
+                        if self.selectable {
+                            self.set_tree_item_checkable(
+                                item.clone(),
+                                path.clone(),
+                                keystring.clone().into(),
+                            );
+                        }
+
                         if self.editable {
                             item.set_editable(0, true);
                             self.set_tree_item_editable_icon(item.clone());
@@ -190,6 +217,10 @@ impl TagTree {
             root.set_text(0, tag_dictionary.get_name());
         }
 
+        if self.selectable {
+            self.set_tree_item_checkable(root.clone(), "".into(), "".into());
+        }
+
         if self.editable {
             self.set_tree_item_editable_icon(root.clone());
         }
@@ -197,6 +228,23 @@ impl TagTree {
         if let Some(tag_dictionary) = self.get_tag_dictionary() {
             self.render_dictionary(tag_dictionary.bind().get_tree(), root, "".into())
         }
+    }
+
+    fn set_tree_item_checkable(
+        &self,
+        mut item: Gd<TreeItem>,
+        p_current_path: GString,
+        key: GString,
+    ) {
+        let new_path = if p_current_path.is_empty() {
+            key.clone().to_string()
+        } else {
+            format!("{}{}{}", p_current_path, SPLIT_CHAR, key.clone())
+        };
+
+        item.set_cell_mode(0, TreeCellMode::CHECK);
+        item.set_checked(0, false);
+        item.set_checked(0, self.is_path_selected(new_path.into()));
     }
 
     fn set_tree_item_editable_icon(&self, mut item: Gd<TreeItem>) {
