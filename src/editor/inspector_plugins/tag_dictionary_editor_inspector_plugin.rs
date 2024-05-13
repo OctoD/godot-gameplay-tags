@@ -1,7 +1,10 @@
 use godot::engine::control::{LayoutPreset, SizeFlags};
-use godot::engine::{EditorInspectorPlugin, HBoxContainer, IEditorInspectorPlugin, Label, Tree, TreeItem, VBoxContainer};
+use godot::engine::{
+    EditorInspectorPlugin, HBoxContainer, IEditorInspectorPlugin, Label, VBoxContainer,
+};
 use godot::prelude::*;
 
+use crate::editor::ui::tag_tree::TagTree;
 use crate::tag_dictionary::TagDictionary;
 
 #[derive(GodotClass)]
@@ -26,44 +29,39 @@ impl IEditorInspectorPlugin for TagDictionaryEditorInspectorPlugin {
         _usage_flags: godot::engine::global::PropertyUsageFlags,
         _wide: bool,
     ) -> bool {
-        if _name == "RefCounted".into() {
+        godot::engine::utilities::print(_name.to_variant(), &[]);
+
+        if _name.to_string().to_lowercase() == "script" {
             return false;
         }
 
-        let title_label = Label::new_alloc();
+        let mut title_label = Label::new_alloc();
         let mut container = VBoxContainer::new_alloc();
         let mut header = HBoxContainer::new_alloc();
-        let mut tree = Tree::new_alloc();
+        let mut tag_tree = TagTree::new_alloc();
         let tag_dictionary = _object
             .try_cast::<TagDictionary>()
             .expect("Failed to cast to TagDictionary");
 
+        title_label.set_text(tag_dictionary.get_name().into());
+
         header.add_child(title_label.to_variant().to());
+        header.set_h_size_flags(SizeFlags::EXPAND_FILL);
+        header.set_anchors_preset(LayoutPreset::TOP_WIDE);
 
         container.add_child(header.to_variant().to());
-        container.add_child(tree.to_variant().to());
+        container.add_child(tag_tree.to_variant().to());
 
-        let mut tags = tag_dictionary.bind().get_tags();
+        tag_tree.bind_mut().set_tag_dictionary(Some(tag_dictionary));
 
-        tags.sort();
+        tag_tree.set_anchors_and_offsets_preset(LayoutPreset::FULL_RECT);
+        tag_tree.set_column_title(0, "Tag name".into());
+        tag_tree.set_custom_minimum_size(Vector2::new(0.0, 200.0));
+        tag_tree.set_hide_root(true);
+        tag_tree.set_v_size_flags(SizeFlags::EXPAND_FILL);
 
-        tree.set_anchors_and_offsets_preset(LayoutPreset::FULL_RECT);
-        tree.set_column_title(0, "Tag name".into());
-        tree.set_custom_minimum_size(Vector2::new(0.0, 200.0));
-        tree.set_hide_root(true);
-        tree.set_v_size_flags(SizeFlags::EXPAND_FILL);
-        
         // done this because of this https://github.com/godot-rust/gdext/issues/156
-        let mut root: Gd<TreeItem> = tree.call("create_item".into(), &[]).to();
-
-        for tag in tags.as_slice() {
-            let mut item: Gd<TreeItem> = root.call("create_child".into(), &[]).to();
-
-            item.set_text(0, tag.clone());
-        }
-
-        self.to_gd()
-            .add_custom_control(container.to_variant().to());
+        self.to_gd().add_custom_control(container.to_variant().to());
 
         true
     }
