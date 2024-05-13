@@ -16,7 +16,14 @@ func _ready() -> void:
 	for tag in dict.tags:
 		print(tag)
 
+	print("tag tree rendered below")
 	print_tag_tree(dict.get_tree())
+	
+	var tree = TagTree.new()
+	tree.hide_root = true
+	tree.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	tree.set_tag_dictionary(dict)
+	add_child(tree)
 
 
 func print_tag_tree(tree: Dictionary, indent_count = 0) -> void:
