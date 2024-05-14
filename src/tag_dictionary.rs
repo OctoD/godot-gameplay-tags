@@ -37,6 +37,28 @@ impl TagDictionary {
     }
 
     #[func]
+    pub fn count(&self) -> u64 {
+        self.tags.len() as u64
+    }
+
+    #[func]
+    pub fn find(&self, predicate: Callable) -> PackedStringArray {
+        let mut result = PackedStringArray::new();
+
+        for tag in self.tags.as_slice() {
+            let mut args = VariantArray::new();
+
+            args.push(tag.to_variant());
+            
+            if predicate.callv(args).booleanize() {
+                result.push(tag.clone());
+            }
+        }
+
+        result
+    }
+
+    #[func]
     pub fn get_tree(&self) -> Dictionary {
         let root = Dictionary::new();
         let mut tags = self.tags.clone();
@@ -67,6 +89,14 @@ impl TagDictionary {
     }
 
     #[func]
+    pub fn has_path(&self, path: String) -> bool {
+        self.tags
+            .as_slice()
+            .iter()
+            .any(|tag| tag.to_string().starts_with(&path))
+    }
+
+    #[func]
     pub fn has_tag(&self, tag: GString) -> bool {
         self.tags.contains(tag)
     }
@@ -83,6 +113,20 @@ impl TagDictionary {
         tags.as_slice()
             .iter()
             .all(|tag| !self.tags.contains(tag.clone()))
+    }
+
+    #[func]
+    pub fn none(&self, predicate: Callable) -> bool {
+        self.tags
+            .as_slice()
+            .iter()
+            .all(|tag| {
+                let mut args = VariantArray::new();
+
+                args.push(tag.to_variant());
+
+                !predicate.callv(args).booleanize()
+            })
     }
 
     #[func]
@@ -136,6 +180,20 @@ impl TagDictionary {
         if count > 0 {
             self.base_mut().emit_changed();
         }
+    }
+
+    #[func]
+    pub fn some(&self, predicate: Callable) -> bool {
+        self.tags
+            .as_slice()
+            .iter()
+            .any(|tag| {
+                let mut args = VariantArray::new();
+
+                args.push(tag.to_variant());
+
+                predicate.callv(args).booleanize()
+            })
     }
 
     #[func]
