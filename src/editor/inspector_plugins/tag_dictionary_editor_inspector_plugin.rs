@@ -29,8 +29,6 @@ impl IEditorInspectorPlugin for TagDictionaryEditorInspectorPlugin {
         _usage_flags: godot::engine::global::PropertyUsageFlags,
         _wide: bool,
     ) -> bool {
-        godot::engine::utilities::print(_name.to_variant(), &[]);
-
         if _name.to_string().to_lowercase() == "script" {
             return false;
         }
