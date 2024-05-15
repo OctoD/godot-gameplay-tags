@@ -1,6 +1,6 @@
 use godot::engine::control::{LayoutPreset, SizeFlags};
 use godot::engine::{
-    EditorInspectorPlugin, HBoxContainer, IEditorInspectorPlugin, Label, VBoxContainer,
+    EditorInspectorPlugin, IEditorInspectorPlugin, ResourceSaver
 };
 use godot::prelude::*;
 
@@ -11,6 +11,14 @@ use crate::tag_dictionary::TagDictionary;
 #[class(tool, init, base = EditorInspectorPlugin)]
 pub struct TagDictionaryEditorInspectorPlugin {
     base: Base<EditorInspectorPlugin>,
+}
+
+#[godot_api]
+impl TagDictionaryEditorInspectorPlugin {
+    #[func]
+    pub fn handle_tag_dictionary_changed(tag_dictionary: Gd<TagDictionary>) {
+        ResourceSaver::singleton().save(tag_dictionary.to_variant().to());
+    }
 }
 
 #[godot_api]
@@ -33,33 +41,34 @@ impl IEditorInspectorPlugin for TagDictionaryEditorInspectorPlugin {
             return false;
         }
 
-        let mut title_label = Label::new_alloc();
-        let mut container = VBoxContainer::new_alloc();
-        let mut header = HBoxContainer::new_alloc();
         let mut tag_tree = TagTree::new_alloc();
-        let tag_dictionary = _object
+        let mut tag_dictionary = _object
             .try_cast::<TagDictionary>()
             .expect("Failed to cast to TagDictionary");
+        let mut callable_args = VariantArray::new();
 
-        title_label.set_text(tag_dictionary.get_name().into());
+        callable_args.push(tag_dictionary.clone().to_variant());
+        
+        let callable = Callable::from_object_method(&self.to_gd(), "handle_tag_dictionary_changed").bindv(callable_args);
 
-        header.add_child(title_label.to_variant().to());
-        header.set_h_size_flags(SizeFlags::EXPAND_FILL);
-        header.set_anchors_preset(LayoutPreset::TOP_WIDE);
-
-        container.add_child(header.to_variant().to());
-        container.add_child(tag_tree.to_variant().to());
-
+        if !tag_dictionary.is_connected("changed".into(), callable.clone()) {
+            tag_dictionary.connect(
+                "changed".into(), 
+                callable
+            );
+        }
+        
         tag_tree.bind_mut().set_tag_dictionary(Some(tag_dictionary));
 
+        tag_tree.set_hide_root(false);
         tag_tree.set_anchors_and_offsets_preset(LayoutPreset::FULL_RECT);
         tag_tree.set_column_title(0, "Tag name".into());
         tag_tree.set_custom_minimum_size(Vector2::new(0.0, 200.0));
-        tag_tree.set_hide_root(true);
+        tag_tree.bind_mut().set_editable(true);
         tag_tree.set_v_size_flags(SizeFlags::EXPAND_FILL);
 
         // done this because of this https://github.com/godot-rust/gdext/issues/156
-        self.to_gd().add_custom_control(container.to_variant().to());
+        self.to_gd().add_custom_control(tag_tree.to_variant().to());
 
         true
     }

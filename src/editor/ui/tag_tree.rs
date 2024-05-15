@@ -214,7 +214,7 @@ impl TagTree {
         root.set_meta(TAG_PATH_META.into(), "".to_variant());
 
         if let Some(tag_dictionary) = self.tag_dictionary.clone() {
-            root.set_text(0, tag_dictionary.get_name());
+            root.set_text(0, tag_dictionary.get_path());
         }
 
         if self.selectable {
@@ -248,14 +248,14 @@ impl TagTree {
     }
 
     fn set_tree_item_editable_icon(&self, mut item: Gd<TreeItem>) {
-        if let Some(icon) = self.to_gd().get_theme_icon("Edit".into()) {
+        if let Some(icon) = self.to_gd().get_theme_icon("Add".into()) {
             item.add_button(0, icon);
-            item.set_button_tooltip_text(0, 0, "Edit tag".into());
+            item.set_button_tooltip_text(0, 0, "Add tag".into());
         }
 
         if let Some(icon) = self.to_gd().get_theme_icon("Remove".into()) {
             item.add_button(0, icon);
-            item.set_button_tooltip_text(0, 1, "Remove tag".into());
+            item.set_button_tooltip_text(0, 1, "Remove tag and descendants".into());
         }
     }
 }
