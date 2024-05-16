@@ -11,6 +11,10 @@ func _ready() -> void:
 	reset_button.pressed.connect(_on_reset_pressed)
 	h_box_container.add_child(reset_button)
 	
+	for child in get_children():
+		if child is CharacterBody2D:
+			child.add_to_group("octod_ggs_tagged_node_group")
+	
 	for tag in resource.tags:
 		var button = Button.new()
 		button.pressed.connect(_on_button_clicked.bind(tag))
@@ -19,13 +23,10 @@ func _ready() -> void:
 
 
 func _on_button_clicked(tag: String) -> void:
-	print("_on_button_clicked ", TagManager.get_tagged_nodes(self))
 	for node in TagManager.get_tagged_nodes(self):
 		(node as Node2D).visible = TagManager.has_tag(tag, node)
-		print(TagManager.has_tag(tag, node), tag, node)
 
 
 func _on_reset_pressed() -> void:
 	for node in TagManager.get_tagged_nodes(self):
-		TagManager.set_tags([], node)
 		(node as Node2D).visible = true
