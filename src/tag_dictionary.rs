@@ -59,6 +59,19 @@ impl TagDictionary {
     }
 
     #[func]
+    pub fn get_tags_from_path(&self, path: GString) -> PackedStringArray {
+        let mut out = PackedStringArray::new();
+
+        for tag in self.tags.as_slice() {
+            if tag.to_string().starts_with(path.to_string().as_str()) {
+                out.push(tag.clone());
+            }
+        }
+
+        out
+    }
+
+    #[func]
     pub fn get_tree(&self) -> Dictionary {
         let root = Dictionary::new();
         let mut tags = self.tags.clone();

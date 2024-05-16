@@ -4,3 +4,4 @@
 
 [node name="GetTagDictionaryTreeDictionary" type="Node"]
 script = ExtResource("1_wma0p")
+metadata/octod_ggs_tagged_node = PackedStringArray("lorem", "dolor", "sit amet", "items.weapons.1h.sword", "items.weapons.1h", "items.armor.helm", "items.armor.torso")

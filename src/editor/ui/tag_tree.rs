@@ -1,5 +1,5 @@
 use godot::{
-    engine::{control::SizeFlags, tree_item::TreeCellMode, ITree, Tree, TreeItem},
+    engine::{control::SizeFlags, tree_item::TreeCellMode, DisplayServer, ITree, Tree, TreeItem},
     prelude::*,
 };
 
@@ -15,6 +15,8 @@ pub struct TagTree {
     editable: bool,
     /// Whether the tag tree is selectable.
     selectable: bool,
+    /// the selected tags
+    selected_tags: PackedStringArray,
     /// The tag dictionary to display.
     tag_dictionary: Option<Gd<TagDictionary>>,
 }
@@ -25,6 +27,10 @@ impl ITree for TagTree {
         self.to_gd().connect(
             StringName::from("button_clicked"),
             Callable::from_object_method(&self.to_gd(), "_on_button_clicked"),
+        );
+        self.to_gd().connect(
+            StringName::from("item_selected"),
+            Callable::from_object_method(&self.to_gd(), "_on_item_selected"),
         );
         self.to_gd().connect(
             StringName::from("item_edited"),
@@ -42,6 +48,10 @@ impl TagTree {
     pub fn tag_path_edited(old_tag: String, new_tag: String);
     #[signal]
     pub fn tag_path_removed(tag: String);
+    #[signal]
+    pub fn tags_added(tags: PackedStringArray);
+    #[signal]
+    pub fn tags_removed(tags: PackedStringArray);
 
     /// Gets whether the tag tree is editable.
     #[func]
@@ -54,6 +64,11 @@ impl TagTree {
         self.selectable
     }
 
+    #[func]
+    pub fn get_selected_tags(&self) -> PackedStringArray {
+        self.selected_tags.clone()
+    }
+
     /// Gets the tag dictionary to display.
     #[func]
     pub fn get_tag_dictionary(&self) -> Option<Gd<TagDictionary>> {
@@ -62,7 +77,10 @@ impl TagTree {
 
     #[func]
     pub fn is_path_selected(&self, _path: GString) -> bool {
-        false
+        self.selected_tags
+            .as_slice()
+            .iter()
+            .any(|x| x.to_string().starts_with(_path.to_string().as_str()))
     }
 
     /// Sets whether the tag tree is editable.
@@ -76,6 +94,12 @@ impl TagTree {
     #[func]
     pub fn set_selectable(&mut self, selectable: bool) {
         self.selectable = selectable;
+        self.render_tree();
+    }
+
+    #[func]
+    pub fn set_selected_tags(&mut self, selected_tags: PackedStringArray) {
+        self.selected_tags = selected_tags;
         self.render_tree();
     }
 
@@ -117,6 +141,50 @@ impl TagTree {
                     .add_tag(new_tag.clone().to_godot());
 
                 self.render_tree();
+            }
+        }
+    }
+
+    #[func]
+    fn _on_item_selected(&mut self) {
+        if let Some(item) = self.to_gd().get_selected() {
+            DisplayServer::singleton()
+                .clipboard_set(item.get_meta(TAG_PATH_META.into()).to_string().into());
+
+            if self.selectable {
+                let mut found_tags = PackedStringArray::new();
+                let mut tags_added = PackedStringArray::new();
+                let mut tags_removed = PackedStringArray::new();
+                let tag_path = item.get_meta(TAG_PATH_META.into()).to_string();
+                let is_selected = item.is_checked(0);
+
+                if let Some(tag_dictionary) = self.tag_dictionary.clone() {
+                    found_tags = tag_dictionary.bind().get_tags_from_path(tag_path.clone().into());
+                }
+
+                for tag in found_tags.as_slice().iter() {
+                    if is_selected {
+                        if let Some(index) = self.selected_tags.find(tag.clone(), Some(0)) {
+                            self.selected_tags.remove(index);
+                            tags_removed.push(tag.clone());
+                        }
+                    } else {
+                        if !self.selected_tags.contains(tag.clone()) {
+                            self.selected_tags.push(tag.clone());
+                            tags_added.push(tag.clone());
+                        }
+                    }
+                }
+
+                if !tags_added.clone().is_empty() {
+                    self.to_gd().emit_signal("tags_added".into(), &[tags_added.to_variant()]);
+                }
+
+                if !tags_removed.clone().is_empty() {
+                    self.to_gd().emit_signal("tags_removed".into(), &[tags_removed.to_variant()]);
+                }
+
+                self.to_gd().call_deferred("render_tree".into(), &[]);
             }
         }
     }
@@ -203,6 +271,7 @@ impl TagTree {
         }
     }
 
+    #[func]
     fn render_tree(&mut self) {
         self.to_gd().clear();
 
@@ -243,8 +312,12 @@ impl TagTree {
         };
 
         item.set_cell_mode(0, TreeCellMode::CHECK);
-        item.set_checked(0, false);
-        item.set_checked(0, self.is_path_selected(new_path.into()));
+
+        if new_path.is_empty() {
+            item.set_checked(0, false);
+        } else {
+            item.set_checked(0, self.is_path_selected(new_path.into()));
+        }
     }
 
     fn set_tree_item_editable_icon(&self, mut item: Gd<TreeItem>) {
