@@ -1,4 +1,4 @@
-use godot::prelude::*;
+use godot::{engine::Engine, prelude::*};
 use std::str::FromStr;
 
 pub const SINGLETON_NAME: &str = "TagManager";
@@ -11,6 +11,23 @@ pub struct TagManager {
 
 #[godot_api]
 impl TagManager {
+    fn _add_to_group(&self, mut target: Gd<Node>) {
+        target.call(
+            "add_to_group".into(),
+            &[
+                self.get_group_name().to_variant(),
+                Engine::singleton().is_editor_hint().to_variant(),
+            ],
+        );
+    }
+
+    fn _remove_from_group(&self, mut target: Gd<Node>) {
+        target.call(
+            "remove_from_group".into(),
+            &[self.get_group_name().to_variant()],
+        );
+    }
+
     pub fn _get_tags(&self, target: &Gd<Node>) -> PackedStringArray {
         if target.has_meta(self.get_meta_name()) {
             return PackedStringArray::from_variant(&target.get_meta(self.get_meta_name()));
@@ -26,7 +43,7 @@ impl TagManager {
 
         if !packed_string_array.contains(tag.clone()) {
             packed_string_array.push(tag);
-            target.add_to_group(self.get_group_name());
+            self._add_to_group(target.clone());
             target.set_meta(self.get_meta_name(), packed_string_array.to_variant());
         }
     }
@@ -46,7 +63,7 @@ impl TagManager {
             }
         }
 
-        target.add_to_group(self.get_group_name());
+        self._add_to_group(target.clone());
         target.set_meta(self.get_meta_name(), packed_string_array.to_variant());
     }
 
@@ -127,7 +144,7 @@ impl TagManager {
 
             if packed_string_array.len() == 0 {
                 target.remove_meta(self.get_meta_name());
-                target.remove_from_group(self.get_group_name());
+                self._remove_from_group(target.clone());
             }
         }
     }
@@ -148,7 +165,7 @@ impl TagManager {
         }
 
         if packed_string_array.len() == 0 {
-            target.remove_from_group(self.get_group_name());
+            self._remove_from_group(target.clone());
             target.remove_meta(self.get_meta_name());
         } else {
             target.set_meta(self.get_meta_name(), packed_string_array.to_variant());
@@ -159,10 +176,10 @@ impl TagManager {
     #[func]
     pub fn set_tags(&self, tags: PackedStringArray, mut target: Gd<Node>) {
         if tags.len() == 0 {
-            target.remove_from_group(self.get_group_name());
+            self._remove_from_group(target.clone());
             target.remove_meta(self.get_meta_name());
         } else {
-            target.add_to_group(self.get_group_name());
+            self._add_to_group(target.clone());
             target.set_meta(self.get_meta_name(), tags.to_variant());
         }
     }
