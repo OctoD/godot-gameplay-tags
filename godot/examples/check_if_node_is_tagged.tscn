@@ -4,3 +4,4 @@
 
 [node name="CheckIfNodeIsTagged" type="Node"]
 script = ExtResource("1_418gr")
+metadata/octod_ggs_tagged_node = PackedStringArray("bar", "baz", "foo")

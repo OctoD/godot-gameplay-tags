@@ -13,13 +13,21 @@
             "options": {
                 "env": {
                     "RUST_BACKTRACE": "1"
-                }
+                },
             },
+            "runOptions": {
+                "instanceLimit": 1
+            },
+            "detail": "Run the built addon in Godot",
             "command": "godot godot/project.godot"
         },
         {
             "type": "cargo",
             "command": "build",
+            "icon": {
+                "color": "terminal.ansiRed",
+                "id": "gear"
+            },
             "problemMatcher": [
                 "$rustc"
             ],
@@ -32,6 +40,11 @@
                 "run in godot"
             ],
             "dependsOrder": "sequence",
+            "icon": {
+                "color": "terminal.ansiGreen",
+                "id": "check"
+            },
+            "detail": "Build and the extension in Godot",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -41,6 +54,11 @@
         {
             "type": "cargo",
             "command": "test",
+            "detail": "Run rust tests for this library",
+            "icon": {
+                "id": "debug-console",
+                "color": "terminal.ansiCyan"
+            },
             "problemMatcher": [
                 "$rustc"
             ],

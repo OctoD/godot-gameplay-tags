@@ -80,6 +80,7 @@ impl NodeTaggingDock {
 
             tree.bind_mut().set_tag_dictionary(Some(dict.clone()));
             tree.bind_mut().set_selectable(true);
+            tree.set_hide_root(true);
             tree.connect(
                 "tags_added".into(),
                 Callable::from_object_method(&self.to_gd(), "on_tags_added"),

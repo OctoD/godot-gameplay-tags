@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bma7rcr1anoxd"]
+
+[ext_resource type="PackedScene" uid="uid://bbrrl5l55v6aq" path="res://examples/tree_tags_querying/character_sprite.tscn" id="1_hhgge"]
+[ext_resource type="Script" path="res://examples/tree_tags_querying/tree_tags_querying.gd" id="1_t3hpg"]
+
+[node name="TreeTagsQuerying" type="Node2D"]
+script = ExtResource("1_t3hpg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CharacterSprite000" parent="." instance=ExtResource("1_hhgge")]
+character_name = "pino"
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_000")
+
+[node name="CharacterSprite001" parent="." instance=ExtResource("1_hhgge")]
+position = Vector2(-466, 149)
+character_name = "beppe"
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_000")
+
+[node name="CharacterSprite002" parent="." instance=ExtResource("1_hhgge")]
+position = Vector2(390, 218)
+character_name = "orca"
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_000")
+
+[node name="CharacterSprite003" parent="." instance=ExtResource("1_hhgge")]
+position = Vector2(393, -214)
+character_name = "lama"
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_001")
+
+[node name="CharacterSprite004" parent="." instance=ExtResource("1_hhgge")]
+position = Vector2(-461, -209)
+character_name = "donna"
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_001")
+
+[node name="CharacterSprite005" parent="." instance=ExtResource("1_hhgge")]
+position = Vector2(419, -21)
+character_name = "antonio"
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_001")
+
+[node name="CharacterSprite006" parent="." instance=ExtResource("1_hhgge")]
+position = Vector2(115, 188)
+character_name = "gerolamo"
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_002")
+
+[node name="CharacterSprite007" parent="." instance=ExtResource("1_hhgge")]
+position = Vector2(-56, -201)
+character_name = "casorate "
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_002")
+
+[node name="CharacterSprite008" parent="." instance=ExtResource("1_hhgge")]
+position = Vector2(-170, 119)
+character_name = "uaglione"
+metadata/octod_ggs_tagged_node = PackedStringArray("example_tag_002")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
