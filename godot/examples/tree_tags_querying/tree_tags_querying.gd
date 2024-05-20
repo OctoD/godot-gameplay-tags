@@ -2,7 +2,7 @@ extends Node2D
 
 const resource = preload("res://examples/tree_tags_querying/tree_tags_querying.tres")
 
-@onready var h_box_container: HBoxContainer = $HBoxContainer
+@onready var h_box_container: HBoxContainer = %ButtonsContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

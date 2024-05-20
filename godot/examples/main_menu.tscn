@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cccbcx0y41us2"]
+
+[ext_resource type="Script" path="res://examples/main_menu.gd" id="1_ffesy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bburr"]
+font_size = 24
+shadow_color = Color(0, 0, 0, 0.756863)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dij48"]
+bg_color = Color(0.161751, 0.0217156, 0.0284931, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwubl"]
+bg_color = Color(0.402309, 0.106914, 0.117465, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grgrg"]
+bg_color = Color(0.139431, 0.0183202, 0.0213748, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainMenu" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+script = ExtResource("1_ffesy")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Godot Gameplay Tags demos"
+label_settings = SubResource("LabelSettings_bburr")
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="QuitToDesktopButton" type="Button" parent="CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_dij48")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fwubl")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_grgrg")
+text = "Quit to desktop"

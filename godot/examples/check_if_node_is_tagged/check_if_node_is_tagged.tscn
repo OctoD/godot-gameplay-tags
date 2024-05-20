@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://yp6ec7grey5a"]
+
+[ext_resource type="Script" path="res://examples/check_if_node_is_tagged/check_if_node_is_tagged.gd" id="1_418gr"]
+
+[node name="CheckIfNodeIsTagged" type="Node"]
+script = ExtResource("1_418gr")
+metadata/octod_ggs_tagged_node = PackedStringArray("bar", "baz", "foo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Check the console and the code"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -11,6 +11,6 @@ config_version=5
 [application]
 
 config/name="godot_gameplay_tags"
-run/main_scene="res://examples/check_if_node_is_tagged.tscn"
+run/main_scene="res://examples/main.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"

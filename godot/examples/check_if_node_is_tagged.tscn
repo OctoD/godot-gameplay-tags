@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://yp6ec7grey5a"]
-
-[ext_resource type="Script" path="res://examples/check_if_node_is_tagged.gd" id="1_418gr"]
-
-[node name="CheckIfNodeIsTagged" type="Node"]
-script = ExtResource("1_418gr")
-metadata/octod_ggs_tagged_node = PackedStringArray("bar", "baz", "foo")
