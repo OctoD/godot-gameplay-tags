@@ -20,3 +20,8 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+    - name: Deploy artifacts to GitHub
+      uses: actions/upload-artifact@v2
+      with:
+        name: extension
+        path: godot/addons/godot_gameplay_tags
