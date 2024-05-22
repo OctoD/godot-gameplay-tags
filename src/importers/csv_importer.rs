@@ -1,9 +1,11 @@
 use godot::{engine::file_access::ModeFlags, prelude::*};
 
+use crate::tag_dictionary::TagDictionary;
+
 #[derive(GodotClass)]
-#[class(tool, init, base = Resource)]
+#[class(tool, init, base = RefCounted)]
 struct CsvImporter {
-    base: Base<Resource>,
+    base: Base<RefCounted>,
     content: PackedStringArray,
 }
 
@@ -24,4 +26,13 @@ impl CsvImporter {
 			.write_csv_line(self.content.clone(), ",")
 			.expect("Failed to write file");
 	}
+
+    #[func] 
+    pub fn to_tag_dictionary(&self) -> Gd<TagDictionary> {
+        let mut tag_dictionary = TagDictionary::new_gd();
+        
+        tag_dictionary.bind_mut().add_tags(self.content.clone());
+
+        tag_dictionary
+    }
 }
