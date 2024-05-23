@@ -23,7 +23,7 @@ jobs:
     - name: Deploy artifacts to GitHub
       uses: actions/upload-artifact@v4
       with:
-        name: godot-gameplay-tags
+        name: godot-gameplay-tags.ubuntu
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
           godot/addons/godot_gameplay_tags/build/*/godot_gameplay_tags.so
@@ -41,7 +41,7 @@ jobs:
     - name: Deploy artifacts to GitHub
       uses: actions/upload-artifact@v4
       with:
-        name: godot-gameplay-tags
+        name: godot-gameplay-tags.macos
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
           godot/addons/godot_gameplay_tags/build/*/godot_gameplay_tags.dylib
@@ -59,7 +59,7 @@ jobs:
     - name: Deploy artifacts to GitHub
       uses: actions/upload-artifact@v4
       with:
-        name: godot-gameplay-tags
+        name: godot-gameplay-tags.windows
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
           godot/addons/godot_gameplay_tags/build/*/godot_gameplay_tags.dll
