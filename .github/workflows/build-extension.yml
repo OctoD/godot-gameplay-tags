@@ -10,9 +10,41 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
+  build_linux:
 
-    runs-on: [ubuntu-latest,windows-latest,macos-latest]
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: Deploy artifacts to GitHub
+      uses: actions/upload-artifact@v2
+      with:
+        name: godot-gameplay-tags
+        path: godot/addons/godot_gameplay_tags
+  
+  build_macos:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: cargo build --verbose
+    - name: Run tests
+      run: cargo test --verbose
+    - name: Deploy artifacts to GitHub
+      uses: actions/upload-artifact@v2
+      with:
+        name: godot-gameplay-tags
+        path: godot/addons/godot_gameplay_tags
+
+  build_windows:
+
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
