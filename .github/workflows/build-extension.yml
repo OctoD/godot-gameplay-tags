@@ -24,7 +24,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: godot-gameplay-tags
-        path: godot/addons/godot_gameplay_tags
+        path: |
+          godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
+          godot/addons/godot_gameplay_tags/build/*/godot_gameplay_tags.so
   
   build_macos:
 
@@ -40,7 +42,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: godot-gameplay-tags
-        path: godot/addons/godot_gameplay_tags
+        path: |
+          godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
+          godot/addons/godot_gameplay_tags/build/*/godot_gameplay_tags.dylib
 
   build_windows:
 
@@ -56,4 +60,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: godot-gameplay-tags
-        path: godot/addons/godot_gameplay_tags
+        path: |
+          godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
+          godot/addons/godot_gameplay_tags/build/*/godot_gameplay_tags.dll
