@@ -23,5 +23,5 @@ jobs:
     - name: Deploy artifacts to GitHub
       uses: actions/upload-artifact@v2
       with:
-        name: extension
+        name: godot-gameplay-tags
         path: godot/addons/godot_gameplay_tags
