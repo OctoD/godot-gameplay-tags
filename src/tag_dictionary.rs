@@ -14,7 +14,7 @@ pub struct TagDictionary {
 impl TagDictionary {
     #[func]
     pub fn add_tag(&mut self, tag: GString) {
-        if !self.tags.contains(tag.clone()) {
+        if !self.tags.contains(&tag) {
             self.tags.push(tag);
             self.base_mut().emit_changed();
         }
@@ -25,7 +25,7 @@ impl TagDictionary {
         let mut count = 0;
 
         for tag in tags.as_slice() {
-            if !self.tags.contains(tag.clone()) {
+            if !self.tags.contains(&tag) {
                 self.tags.push(tag.clone());
                 count += 1;
             }
@@ -111,21 +111,21 @@ impl TagDictionary {
 
     #[func]
     pub fn has_tag(&self, tag: GString) -> bool {
-        self.tags.contains(tag)
+        self.tags.contains(&tag)
     }
 
     #[func]
     pub fn has_some_tags(&self, tags: PackedStringArray) -> bool {
         tags.as_slice()
             .iter()
-            .any(|tag| self.tags.contains(tag.clone()))
+            .any(|tag| self.tags.contains(&tag))
     }
 
     #[func]
     pub fn has_none_tags(&self, tags: PackedStringArray) -> bool {
         tags.as_slice()
             .iter()
-            .all(|tag| !self.tags.contains(tag.clone()))
+            .all(|tag| !self.tags.contains(&tag))
     }
 
     #[func]
@@ -150,7 +150,7 @@ impl TagDictionary {
             .iter()
             .position(|t| old_tag == t.to_string())
         {
-            self.tags.set(index, new_tag.into());
+            self.tags[index] = new_tag.into();
             self.base_mut().emit_changed();
         }
     }
@@ -161,7 +161,9 @@ impl TagDictionary {
 
         for old_tag in old_tags.as_slice() {
             if let Some(index) = self.tags.as_slice().iter().position(|t| old_tag == t) {
-                self.tags.set(index, new_tags.get(index).to_string().into());
+                if let Some(tag) = new_tags.get(index) {
+                    self.tags[index] = tag;
+                }
                 count += 1;
             }
         }

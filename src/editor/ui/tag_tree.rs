@@ -159,17 +159,19 @@ impl TagTree {
                 let is_selected = item.is_checked(0);
 
                 if let Some(tag_dictionary) = self.tag_dictionary.clone() {
-                    found_tags = tag_dictionary.bind().get_tags_from_path(tag_path.clone().into());
+                    found_tags = tag_dictionary
+                        .bind()
+                        .get_tags_from_path(tag_path.clone().into());
                 }
 
                 for tag in found_tags.as_slice().iter() {
                     if is_selected {
-                        if let Some(index) = self.selected_tags.find(tag.clone(), Some(0)) {
+                        if let Some(index) = self.selected_tags.find(&tag, Some(0)) {
                             self.selected_tags.remove(index);
                             tags_removed.push(tag.clone());
                         }
                     } else {
-                        if !self.selected_tags.contains(tag.clone()) {
+                        if !self.selected_tags.contains(tag) {
                             self.selected_tags.push(tag.clone());
                             tags_added.push(tag.clone());
                         }
@@ -177,11 +179,13 @@ impl TagTree {
                 }
 
                 if !tags_added.clone().is_empty() {
-                    self.to_gd().emit_signal("tags_added".into(), &[tags_added.to_variant()]);
+                    self.to_gd()
+                        .emit_signal("tags_added".into(), &[tags_added.to_variant()]);
                 }
 
                 if !tags_removed.clone().is_empty() {
-                    self.to_gd().emit_signal("tags_removed".into(), &[tags_removed.to_variant()]);
+                    self.to_gd()
+                        .emit_signal("tags_removed".into(), &[tags_removed.to_variant()]);
                 }
 
                 self.to_gd().call_deferred("render_tree".into(), &[]);
@@ -261,10 +265,9 @@ impl TagTree {
                         self.render_dictionary(dict, item, new_path.clone().into());
                     }
                     Err(convert_error) => {
-                        godot::engine::utilities::printerr(
-                            convert_error.to_string().to_variant(),
-                            &[],
-                        );
+                        godot::engine::utilities::printerr(&[convert_error
+                            .to_string()
+                            .to_variant()]);
                     }
                 }
             }

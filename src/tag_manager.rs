@@ -41,7 +41,7 @@ impl TagManager {
     pub fn add_tag(&self, tag: GString, mut target: Gd<Node>) {
         let mut packed_string_array = self._get_tags(&target);
 
-        if !packed_string_array.contains(tag.clone()) {
+        if !packed_string_array.contains(&tag) {
             packed_string_array.push(tag);
             self._add_to_group(target.clone());
             target.set_meta(self.get_meta_name(), packed_string_array.to_variant());
@@ -58,7 +58,7 @@ impl TagManager {
         }
 
         for tag in tags.as_slice() {
-            if !packed_string_array.contains(tag.clone()) {
+            if !packed_string_array.contains(&tag) {
                 packed_string_array.push(tag.clone());
             }
         }
@@ -98,7 +98,7 @@ impl TagManager {
     /// Checks if a target node has a specific tag.
     #[func]
     fn has_tag(&self, tag: GString, target: Gd<Node>) -> bool {
-        return self._get_tags(&target).contains(tag);
+        return self._get_tags(&target).contains(&tag);
     }
 
     /// Checks if a target node has all of the specified tags.
@@ -108,7 +108,7 @@ impl TagManager {
             ._get_tags(&target)
             .as_slice()
             .iter()
-            .all(|tag| tags.contains(tag.clone()));
+            .all(|tag| tags.contains(&tag));
     }
 
     /// Checks if a target node has any of the specified tags.
@@ -117,7 +117,7 @@ impl TagManager {
         self._get_tags(&target)
             .as_slice()
             .iter()
-            .any(|tag| tags.contains(tag.clone()))
+            .any(|tag| tags.contains(&tag))
     }
 
     /// Checks if a target node has none of the specified tags.
@@ -126,7 +126,7 @@ impl TagManager {
         self._get_tags(&target)
             .as_slice()
             .iter()
-            .all(|tag| !tags.contains(tag.clone()))
+            .all(|tag| !tags.contains(&tag))
     }
 
     /// Removes a tag from a target node. If the node has no more tags, it will be removed from the tagged nodes group.
