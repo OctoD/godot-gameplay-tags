@@ -4,11 +4,11 @@ compatibility_minimum = 4.2
 reloadable = true
 
 [libraries]
-linux.debug.x86_64 =     "res://addons/godot_gameplay_tags/build/debug/godot_gameplay_tags.so"
-linux.release.x86_64 =   "res://addons/godot_gameplay_tags/build/release/godot_gameplay_tags.so"
+linux.debug.x86_64 =     "res://addons/godot_gameplay_tags/build/debug/libgodot_gameplay_tags.so"
+linux.release.x86_64 =   "res://addons/godot_gameplay_tags/build/release/libgodot_gameplay_tags.so"
 windows.debug.x86_64 =   "res://addons/godot_gameplay_tags/build/debug/godot_gameplay_tags.dll"
 windows.release.x86_64 = "res://addons/godot_gameplay_tags/build/release/godot_gameplay_tags.dll"
-macos.debug =            "res://addons/godot_gameplay_tags/build/debug/godot_gameplay_tags.dylib"
-macos.release =          "res://addons/godot_gameplay_tags/build/release/godot_gameplay_tags.dylib"
-macos.debug.arm64 =      "res://addons/godot_gameplay_tags/build/debug/godot_gameplay_tags.dylib"
-macos.release.arm64 =    "res://addons/godot_gameplay_tags/build/release/godot_gameplay_tags.dylib"
+macos.debug =            "res://addons/godot_gameplay_tags/build/debug/libgodot_gameplay_tags.dylib"
+macos.release =          "res://addons/godot_gameplay_tags/build/release/libgodot_gameplay_tags.dylib"
+macos.debug.arm64 =      "res://addons/godot_gameplay_tags/build/debug/libgodot_gameplay_tags.dylib"
+macos.release.arm64 =    "res://addons/godot_gameplay_tags/build/release/libgodot_gameplay_tags.dylib"
