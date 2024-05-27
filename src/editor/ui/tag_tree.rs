@@ -324,12 +324,22 @@ impl TagTree {
     }
 
     fn set_tree_item_editable_icon(&self, mut item: Gd<TreeItem>) {
-        if let Some(icon) = self.to_gd().get_theme_icon("Add".into()) {
+        if let Some(icon) = self
+            .to_gd()
+            .get_theme_icon_ex(StringName::from("Add"))
+            .theme_type(StringName::from("EditorIcons"))
+            .done()
+        {
             item.add_button(0, icon);
             item.set_button_tooltip_text(0, 0, "Add tag".into());
         }
 
-        if let Some(icon) = self.to_gd().get_theme_icon("Remove".into()) {
+        if let Some(icon) = self
+            .to_gd()
+            .get_theme_icon_ex(StringName::from("Remove"))
+            .theme_type(StringName::from("EditorIcons"))
+            .done()
+        {
             item.add_button(0, icon);
             item.set_button_tooltip_text(0, 1, "Remove tag and descendants".into());
         }
