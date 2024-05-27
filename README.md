@@ -2,6 +2,8 @@ godot-gameplay-tags
 ===================
 [![Build Extension](https://github.com/OctoD/godot-gameplay-tags/actions/workflows/build-extension.yml/badge.svg)](https://github.com/OctoD/godot-gameplay-tags/actions/workflows/build-extension.yml)
 
+![logo](godot/icon.svg)
+
 This addon is part of the Godot Gameplay Systems (GGS). It provides a tagging system for Godot.
 
 ## Installation
