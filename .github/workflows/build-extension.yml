@@ -24,6 +24,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: godot-gameplay-tags.ubuntu
+        if-no-files-found: error
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
           godot/addons/godot_gameplay_tags/build/*/*godot_gameplay_tags.*
@@ -42,6 +43,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: godot-gameplay-tags.macos
+        if-no-files-found: error
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
           godot/addons/godot_gameplay_tags/build/*/*godot_gameplay_tags.*
@@ -60,6 +62,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: godot-gameplay-tags.windows
+        if-no-files-found: error
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
           godot/addons/godot_gameplay_tags/build/*/*godot_gameplay_tags.dll
