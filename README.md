@@ -8,6 +8,10 @@ This addon is part of the Godot Gameplay Systems (GGS). It provides a tagging sy
 
 You can either download this addon from the asset-store inside the Godot editor or download it from the releases page and install it manually.
 
+## Documentation
+
+Go and read the [documentation](docs/readme.md) to learn how to use this addon. It's very simple and easy to use.
+
 ## Working on the source
 
 If you want to work on the source, you can clone this repository, and start building the code.
