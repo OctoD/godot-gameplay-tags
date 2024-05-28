@@ -6,6 +6,7 @@ var example_scenes: Array[String] = [
 	"res://examples/get_tag_dictionary_tree_dictionary/get_tag_dictionary_tree_dictionary.tscn",
 	"res://examples/list_all_tag_dictionaries/list_all_tag_dictionaries.tscn",
 	"res://examples/tree_tags_querying/tree_tags_querying.tscn",
+	"res://examples/tag_manager_tagpath_querying/tag_manager_tagpath_querying.tscn",
 ]
 
 @onready var back_to_menu_button: Button = %BackToMenuButton

@@ -242,7 +242,7 @@ func _ready():
 
 	TagManager.remove_tags(TagManager.get_tags(self), self)
 	TagManager.add_tag(tag, self)
-	print("setting item ", item_name, " tag to ", tag)
+
 	register_tag()
 
 

@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_grb1m"]
 font_size = 8
 
-[node name="TextureRect" type="TextureRect"]
+[node name="TextureRect" type="TextureRect" groups=["octod_ggs_tagged_node_group"]]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -14,9 +14,11 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+tooltip_text = "divine chestplate of proficiency"
 texture = ExtResource("1_0l7ev")
 stretch_mode = 4
 script = ExtResource("1_hngm6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
 
 [node name="Label" type="Label" parent="."]
 unique_name_in_owner = true
@@ -28,7 +30,7 @@ anchor_bottom = 1.0
 offset_top = -12.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "sigil armorplate armorplate key sigil armorplate armorplate key sigil armorplate armorplate key "
+text = "divine chestplate of proficiency"
 label_settings = SubResource("LabelSettings_grb1m")
 horizontal_alignment = 1
 vertical_alignment = 2

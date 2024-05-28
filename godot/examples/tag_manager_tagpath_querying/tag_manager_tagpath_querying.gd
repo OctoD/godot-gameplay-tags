@@ -64,5 +64,4 @@ func _on_tag_select() -> void:
 	
 	for child in %ItemList.get_children():
 		if child is Control:
-			print(TagManager.has_some_tags(selected_tags, child), " -- item name: ", child.item_name, " -- owned tags: ", TagManager.get_tags(child), " -- selected tags: ", selected_tags)
 			child.visible = TagManager.has_some_tags(selected_tags, child)
