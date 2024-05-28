@@ -12,7 +12,7 @@ pub struct TagManager {
 #[godot_api]
 impl TagManager {
     fn _add_to_group(&self, mut target: Gd<Node>) {
-        target.call(
+        target.upcast_mut::<Node>().call(
             "add_to_group".into(),
             &[
                 self.get_group_name().to_variant(),
@@ -22,7 +22,7 @@ impl TagManager {
     }
 
     fn _remove_from_group(&self, mut target: Gd<Node>) {
-        target.call(
+        target.upcast_mut::<Node>().call(
             "remove_from_group".into(),
             &[self.get_group_name().to_variant()],
         );
@@ -79,6 +79,24 @@ impl TagManager {
         StringName::from_str("octod_ggs_tagged_node").expect("Failed to create StringName")
     }
 
+    /// Gets all the nodes in with a tag path
+    #[func]
+    pub fn get_nodes_in_tag_path(&self, target: Gd<Node>, tag_path: String) -> Array<Gd<Node>> {
+        let mut output: Array<Gd<Node>> = Array::new();
+
+        if let Some(mut tree) = target.get_tree() {
+            let nodes: Array<Gd<Node>> = tree.get_nodes_in_group(self.get_group_name());
+
+            for node in nodes.iter_shared() {
+                if self.is_in_path(node.clone(), tag_path.clone()) {
+                    output.push(node);
+                }
+            }
+        }
+
+        return output;
+    }
+
     /// Returns all tagged nodes descending from a target node.
     #[func]
     pub fn get_tagged_nodes(&self, target: Gd<Node>) -> Array<Gd<Node>> {
@@ -93,6 +111,19 @@ impl TagManager {
     #[func]
     pub fn get_tags(&self, target: Gd<Node>) -> PackedStringArray {
         return self._get_tags(&target);
+    }
+
+    #[func]
+    pub fn is_in_path(&self, target: Gd<Node>, path: String) -> bool {
+        let tags = self.get_tags(target);
+
+        for tag in tags.as_slice().iter() {
+            if tag.to_string().contains(&path.to_string()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /// Checks if a target node has a specific tag.

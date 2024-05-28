@@ -53,6 +53,28 @@ impl TagTree {
     #[signal]
     pub fn tags_removed(tags: PackedStringArray);
 
+    /// deselects a tag
+    #[func]
+    pub fn deselect_tag(&mut self, tag: String) {
+        let mut tags = self.selected_tags.clone();
+        if let Some(index) = tags.find(&tag.into(), Some(0)) {
+            tags.remove(index);
+            self.set_selected_tags(tags);
+        }
+    }
+
+    /// deselects many tags
+    #[func]
+    pub fn deselect_many_tags(&mut self, tags: PackedStringArray) {
+        let mut selected_tags = self.selected_tags.clone();
+        for tag in tags.as_slice().iter() {
+            if let Some(index) = selected_tags.find(tag, Some(0)) {
+                selected_tags.remove(index);
+            }
+        }
+        self.set_selected_tags(selected_tags);
+    }
+
     /// Gets whether the tag tree is editable.
     #[func]
     pub fn get_editable(&self) -> bool {
@@ -81,6 +103,28 @@ impl TagTree {
             .as_slice()
             .iter()
             .any(|x| x.to_string().starts_with(_path.to_string().as_str()))
+    }
+
+    /// Selects a tag.
+    #[func]
+    pub fn select_tag(&mut self, tag: String) {
+        let mut tags = self.selected_tags.clone();
+        if !tags.contains(&tag.clone().into()) {
+            tags.push(tag.into());
+            self.set_selected_tags(tags);
+        }
+    }
+
+    /// Selects many tags.
+    #[func]
+    pub fn select_many_tags(&mut self, tags: PackedStringArray) {
+        let mut selected_tags = self.selected_tags.clone();
+        for tag in tags.as_slice().iter() {
+            if !selected_tags.contains(tag) {
+                selected_tags.push(tag.clone());
+            }
+        }
+        self.set_selected_tags(selected_tags);
     }
 
     /// Sets whether the tag tree is editable.

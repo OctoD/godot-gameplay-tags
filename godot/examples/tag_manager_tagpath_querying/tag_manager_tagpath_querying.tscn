@@ -1,0 +1,823 @@
+[gd_scene load_steps=4 format=3 uid="uid://crnvncydglr28"]
+
+[ext_resource type="Script" path="res://examples/tag_manager_tagpath_querying/tag_manager_tagpath_querying.gd" id="1_0obv2"]
+[ext_resource type="PackedScene" uid="uid://bqv5fslvvyqe0" path="res://examples/tag_manager_tagpath_querying/inventory_item.tscn" id="2_03o83"]
+
+[sub_resource type="TagDictionary" id="TagDictionary_sjki6"]
+tags = PackedStringArray("item.armor.shield", "item.armor.amulet", "item.weapon.sword", "item.weapon.wand", "item.armor.ring", "item.armor.boots", "item.armor.chestplate", "item.armor.helm", "item.weapon.knife", "item.weapon.axe")
+
+[node name="TagManagerTagpathQuerying" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0obv2")
+
+[node name="InventoryContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ItemList" type="GridContainer" parent="InventoryContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 4
+
+[node name="InventoryItem000" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "neck shield of ruin"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem001" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "light amulet of focus"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem002" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "air sword of obliteration"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem003" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fur wand of delirium"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem004" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "light ring of recollection"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem005" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "blood ring of agility"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem006" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "hip wand of perception"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem007" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "mouth amulet of confusion"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem008" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "glass boots of entropy"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem009" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "tongue shield of famine"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem010" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "blood chestplate of memory"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem011" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fur shield of swiftness"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem012" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "tongue helm of memory"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.helm")
+
+[node name="InventoryItem013" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "body sword of chaos"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem014" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "hip knife of contemplation"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem015" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "toe knife of insanity"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem016" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fur axe of haste"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem017" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "enchanted ring of remembrance"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem018" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "beard amulet of infection"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem019" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "amulet boots of delirium"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem020" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "epic wand of concentration"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem021" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "wing shield of knowledge"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem022" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "heart knife of delirium"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem023" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fur wand of chaos"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem024" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fang shield of disorder"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem025" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "unholy amulet of strength"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem026" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "scroll chestplate of ruin"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem027" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "epic ring of annihilation"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem028" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "bone helm of endurance"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.helm")
+
+[node name="InventoryItem029" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "lawful boots of plague"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem030" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "bag shield of power"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem031" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "leather chestplate of annihilation"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem032" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "godly shield of recall"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem033" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "poison knife of recollection"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem034" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "leather wand of oblivion"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem035" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "godly boots of enlightenment"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem036" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "claw chestplate of speed"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem037" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fur helm of concentration"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.helm")
+
+[node name="InventoryItem038" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "chaotic helm of strength"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.helm")
+
+[node name="InventoryItem039" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "leg helm of focus"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.helm")
+
+[node name="InventoryItem040" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "unholy ring of insight"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem041" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "body chestplate of lunacy"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem042" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "ice axe of confusion"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem043" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "chaotic sword of eruption"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem044" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "belt axe of eruption"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem045" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fire boots of amnesia"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem046" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "evil axe of haste"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem047" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "feather shield of intelligence"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem048" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "enchanted boots of haste"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem049" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "void wand of lunacy"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem050" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "legendary boots of thought"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem051" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "broken helm of delirium"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.helm")
+
+[node name="InventoryItem052" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "scale amulet of volcano"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem053" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "shoulder chestplate of decay"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem054" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "hand chestplate of dexterity"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem055" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "waist chestplate of decay"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem056" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "good knife of annihilation"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem057" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "ear ring of meditation"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem058" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "back axe of chaos"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem059" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "lawful chestplate of skill"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem060" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "thigh boots of dementia"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem061" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "lightning axe of contemplation"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem062" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "heart boots of quickness"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem063" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "sharp sword of expertise"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem064" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "scar sword of precision"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem065" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "seal chestplate of implosion"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem066" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "eye amulet of mastery"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem067" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "necklace sword of skill"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem068" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "hip axe of speed"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem069" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "void axe of awareness"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem070" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "ear amulet of storm"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem071" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "blood sword of pollution"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem072" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "scroll axe of enlightenment"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem073" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "beard amulet of haste"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem074" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "shiny knife of perception"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem075" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "rusty amulet of ruin"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem076" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "wing axe of awareness"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem077" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "normal wand of remembrance"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem078" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "rune wand of tornado"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem079" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "ring chestplate of intelligence"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem080" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "scar amulet of insanity"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem081" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "claw chestplate of precision"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem082" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "divine shield of obliteration"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem083" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "earth amulet of intelligence"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem084" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "pendant boots of swiftness"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem085" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "mouth ring of enlightenment"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem086" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "chain boots of agility"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem087" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "magical amulet of precision"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem088" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "nose ring of oblivion"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem089" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "void ring of destruction"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem090" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "waist shield of dementia"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem091" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "wood helm of pestilence"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.helm")
+
+[node name="InventoryItem092" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "magical boots of mastery"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem093" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "tusk sword of oblivion"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem094" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "leather axe of accuracy"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem095" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "legendary wand of focus"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem096" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "heart amulet of recollection"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem097" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "common amulet of infection"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem098" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "pouch sword of famine"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem099" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "good chestplate of infection"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem100" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fang chestplate of remembrance"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem101" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "leather knife of endurance"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem102" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "uncommon ring of enlightenment"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem103" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "dark boots of contemplation"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem104" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "legendary amulet of strength"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem105" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "charm sword of forgetfulness"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem106" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "ring axe of wisdom"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.axe")
+
+[node name="InventoryItem107" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "lawful amulet of lunacy"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem108" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "good amulet of concentration"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem109" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fur boots of eruption"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem110" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "wrist amulet of might"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem111" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "tail ring of amnesia"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem112" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "scale knife of knowledge"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem113" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "water boots of madness"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.boots")
+
+[node name="InventoryItem114" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "backpack helm of dexterity"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.helm")
+
+[node name="InventoryItem115" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "hair ring of skill"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem116" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "rune chestplate of extermination"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem117" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "tattoo amulet of swiftness"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem118" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "fang chestplate of amnesia"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem119" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "stone wand of focus"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="InventoryItem120" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "light ring of entropy"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem121" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "ice knife of endurance"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.knife")
+
+[node name="InventoryItem122" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "waist chestplate of power"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.chestplate")
+
+[node name="InventoryItem123" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "uncommon amulet of dementia"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem124" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "acid sword of corruption"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.sword")
+
+[node name="InventoryItem125" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "bag ring of amnesia"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.ring")
+
+[node name="InventoryItem126" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "bag amulet of infection"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.amulet")
+
+[node name="InventoryItem127" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "wrist shield of amnesia"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.armor.shield")
+
+[node name="InventoryItem128" parent="InventoryContainer/ScrollContainer/ItemList" groups=["octod_ggs_tagged_node_group"] instance=ExtResource("2_03o83")]
+layout_mode = 2
+tooltip_text = "ancient wand of disorder"
+shared_tag_dictionary = SubResource("TagDictionary_sjki6")
+metadata/octod_ggs_tagged_node = PackedStringArray("item.weapon.wand")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TagTree" type="TagTree" parent="InventoryContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+hide_root = true
+
+[node name="TagPathSelectionContainer" type="HBoxContainer" parent="InventoryContainer/VBoxContainer"]
+layout_mode = 2
