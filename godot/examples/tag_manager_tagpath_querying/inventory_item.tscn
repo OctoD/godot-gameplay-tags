@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqv5fslvvyqe0"]
+
+[ext_resource type="Texture2D" uid="uid://c5xjgijg6uw1l" path="res://icon.svg" id="1_0l7ev"]
+[ext_resource type="Script" path="res://examples/tag_manager_tagpath_querying/inventory_item.gd" id="1_hngm6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_grb1m"]
+font_size = 8
+
+[node name="TextureRect" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_0l7ev")
+stretch_mode = 4
+script = ExtResource("1_hngm6")
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "sigil armorplate armorplate key sigil armorplate armorplate key sigil armorplate armorplate key "
+label_settings = SubResource("LabelSettings_grb1m")
+horizontal_alignment = 1
+vertical_alignment = 2
+clip_text = true
+text_overrun_behavior = 1

@@ -35,11 +35,13 @@ This singleton, has several methods to help you manage the tags of your nodes:
 |--------|-------------|
 | `add_tag(node: Node, tag: StringName) -> void` | Adds a single tag to a node. |
 | `add_tags(node: Node, tags: PackedStringArray) -> void` | Adds multiple tags to a node. |
+| `get_nodes_in_tag_path(target: Node, path: String) -> Array[Node]` | Gets all the nodes that are in a specific tag path. |
 | `get_tagged_nodes(target: Node) -> Array[Node]` | Gets all the nodes that have tags assigned under the target node. |
 | `get_tags(target: Node) -> PackedStringArray` | Gets all the tags assigned to a node. |
 | `has_all_tags(tags: PackedStringArray, target: Node) -> bool` | Checks if a node has all the tags assigned. |
 | `has_some_tags(tags: PackedStringArray, target: Node) -> bool` | Checks if a node has at least one of the tags assigned. |
 | `has_none_tags(tags: PackedStringArray, target: Node) -> bool` | Checks if a node has none of the tags assigned. |
+| `is_in_path(target: Node, path: String) -> bool` | Checks if a node is in a specific tag path. |
 | `remove_tag(tag: GString, target: Node)` | Removes a single tag from a node. |
 | `remove_tags(tags: PackedStringArray, target: Node)` | Removes multiple tags from a node. |
 | `set_tags(tags: PackedStringArray, target: Node)` | Sets the tags of a node, removing the previous ones. |
