@@ -1,7 +1,5 @@
 use godot::engine::control::{LayoutPreset, SizeFlags};
-use godot::engine::{
-    EditorInspectorPlugin, IEditorInspectorPlugin, ResourceSaver
-};
+use godot::engine::{EditorInspectorPlugin, IEditorInspectorPlugin, ResourceSaver};
 use godot::prelude::*;
 
 use crate::editor::ui::tag_tree::TagTree;
@@ -48,16 +46,14 @@ impl IEditorInspectorPlugin for TagDictionaryEditorInspectorPlugin {
         let mut callable_args = VariantArray::new();
 
         callable_args.push(tag_dictionary.clone().to_variant());
-        
-        let callable = Callable::from_object_method(&self.to_gd(), "handle_tag_dictionary_changed").bindv(callable_args);
+
+        let callable = Callable::from_object_method(&self.to_gd(), "handle_tag_dictionary_changed")
+            .bindv(callable_args);
 
         if !tag_dictionary.is_connected("changed".into(), callable.clone()) {
-            tag_dictionary.connect(
-                "changed".into(), 
-                callable
-            );
+            tag_dictionary.connect("changed".into(), callable);
         }
-        
+
         tag_tree.bind_mut().set_tag_dictionary(Some(tag_dictionary));
 
         tag_tree.set_hide_root(false);

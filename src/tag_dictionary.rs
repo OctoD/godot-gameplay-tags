@@ -49,7 +49,7 @@ impl TagDictionary {
             let mut args = VariantArray::new();
 
             args.push(tag.to_variant());
-            
+
             if predicate.callv(args).booleanize() {
                 result.push(tag.clone());
             }
@@ -116,30 +116,23 @@ impl TagDictionary {
 
     #[func]
     pub fn has_some_tags(&self, tags: PackedStringArray) -> bool {
-        tags.as_slice()
-            .iter()
-            .any(|tag| self.tags.contains(&tag))
+        tags.as_slice().iter().any(|tag| self.tags.contains(&tag))
     }
 
     #[func]
     pub fn has_none_tags(&self, tags: PackedStringArray) -> bool {
-        tags.as_slice()
-            .iter()
-            .all(|tag| !self.tags.contains(&tag))
+        tags.as_slice().iter().all(|tag| !self.tags.contains(&tag))
     }
 
     #[func]
     pub fn none(&self, predicate: Callable) -> bool {
-        self.tags
-            .as_slice()
-            .iter()
-            .all(|tag| {
-                let mut args = VariantArray::new();
+        self.tags.as_slice().iter().all(|tag| {
+            let mut args = VariantArray::new();
 
-                args.push(tag.to_variant());
+            args.push(tag.to_variant());
 
-                !predicate.callv(args).booleanize()
-            })
+            !predicate.callv(args).booleanize()
+        })
     }
 
     #[func]
@@ -199,16 +192,13 @@ impl TagDictionary {
 
     #[func]
     pub fn some(&self, predicate: Callable) -> bool {
-        self.tags
-            .as_slice()
-            .iter()
-            .any(|tag| {
-                let mut args = VariantArray::new();
+        self.tags.as_slice().iter().any(|tag| {
+            let mut args = VariantArray::new();
 
-                args.push(tag.to_variant());
+            args.push(tag.to_variant());
 
-                predicate.callv(args).booleanize()
-            })
+            predicate.callv(args).booleanize()
+        })
     }
 
     #[func]
