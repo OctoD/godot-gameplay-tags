@@ -47,12 +47,16 @@ impl IEditorImportPlugin for CsvImportPlugin {
         "".into()
     }
 
+    fn get_priority(&self) -> f32 {
+        1_000.0
+    }
+
     fn get_resource_type(&self) -> GString {
         "TagDictionary".into()
     }
 
     fn get_save_extension(&self) -> GString {
-        "csv".into()
+        "".into()
     }
 
     fn get_visible_name(&self) -> GString {
@@ -65,16 +69,24 @@ impl IEditorImportPlugin for CsvImportPlugin {
         _save_path: GString,
         _options: Dictionary,
         _platform_variants: Array<GString>,
-        _gen_files: Array<GString>,
+        mut gen_files: Array<GString>,
     ) -> Error {
         let mut tag_dictionary = TagDictionary::new_gd();
+        let resource_save_path = source_file.to_string() + ".tres";
 
-        tag_dictionary.set_path(source_file.to_string().replace("csv", "tres").into());
+        tag_dictionary.take_over_path(resource_save_path.clone().into());
 
         if let Some(file_contents) = FileAccess::open(source_file.clone(), ModeFlags::READ) {
             let text_content = file_contents.get_as_text();
+            let text_content_str = text_content.to_string();
+            let lines = text_content_str.lines();
+            let mut imported_line_count = 0;
 
-            text_content.to_string().lines().for_each(|line| {
+            if lines.clone().count() == 0 {
+                return Error::OK;
+            }
+
+            lines.for_each(|line| {
                 let binding = line.replace(",", ".").replace("..", "");
                 let mut tag = binding;
 
@@ -82,12 +94,17 @@ impl IEditorImportPlugin for CsvImportPlugin {
                     tag = tag[0..tag.len() - 1].to_string();
                 }
 
-                if !tag.is_empty() {
-                    tag_dictionary.bind_mut().add_tag(tag.into());
+                if !tag.is_empty() && tag_dictionary.bind_mut().add_tag(tag.into()) {
+                    imported_line_count += 1;
                 }
             });
 
-            return ResourceSaver::singleton().save(tag_dictionary.upcast());
+            if imported_line_count > 0 {
+                gen_files.push(resource_save_path.into());
+                return ResourceSaver::singleton().save(tag_dictionary.upcast());
+            }
+
+            return Error::OK;
         }
 
         Error::ERR_CANT_OPEN
