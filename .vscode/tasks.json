@@ -13,13 +13,13 @@
             "options": {
                 "env": {
                     "RUST_BACKTRACE": "1"
-                },
+                }
             },
             "runOptions": {
                 "instanceLimit": 1
             },
             "detail": "Run the built addon in Godot",
-            "command": "godot godot/project.godot"
+            "command": "godot godot/project.godot",
         },
         {
             "type": "cargo",

@@ -56,10 +56,10 @@ impl NodeTaggingDock {
 
     #[func]
     fn render_tag_trees(&mut self) {
-		// let's start with cleaning up child elements
-		for mut child in self.to_gd().get_children().iter_shared() {
-			child.queue_free();
-		}
+        // let's start with cleaning up child elements
+        for mut child in self.to_gd().get_children().iter_shared() {
+            child.queue_free();
+        }
 
         let mut tag_dictionary_fs = TagDictionaryFs::new_gd();
         let tag_manager = TagManager::new_alloc();
@@ -100,12 +100,11 @@ impl IVBoxContainer for NodeTaggingDock {
     fn ready(&mut self) {
         self.to_gd().set_name("Node tags".into());
 
-		if let Some(mut selection) = EditorInterface::singleton().get_selection() {
-			selection.connect(
-				"selection_changed".into(),
-				Callable::from_object_method(&self.to_gd(), "render_tag_trees"),
-			);
-		}
-		
+        if let Some(mut selection) = EditorInterface::singleton().get_selection() {
+            selection.connect(
+                "selection_changed".into(),
+                Callable::from_object_method(&self.to_gd(), "render_tag_trees"),
+            );
+        }
     }
 }

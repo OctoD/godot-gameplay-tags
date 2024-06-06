@@ -13,15 +13,18 @@ pub struct TagDictionary {
 #[godot_api]
 impl TagDictionary {
     #[func]
-    pub fn add_tag(&mut self, tag: GString) {
+    pub fn add_tag(&mut self, tag: GString) -> bool {
         if !self.tags.contains(&tag) {
             self.tags.push(tag);
             self.base_mut().emit_changed();
+            return true;
         }
+
+        false
     }
 
     #[func]
-    pub fn add_tags(&mut self, tags: PackedStringArray) {
+    pub fn add_tags(&mut self, tags: PackedStringArray) -> u64 {
         let mut count = 0;
 
         for tag in tags.as_slice() {
@@ -34,6 +37,8 @@ impl TagDictionary {
         if count > 0 {
             self.base_mut().emit_changed();
         }
+
+        count
     }
 
     #[func]
@@ -49,7 +54,7 @@ impl TagDictionary {
             let mut args = VariantArray::new();
 
             args.push(tag.to_variant());
-            
+
             if predicate.callv(args).booleanize() {
                 result.push(tag.clone());
             }
@@ -116,34 +121,27 @@ impl TagDictionary {
 
     #[func]
     pub fn has_some_tags(&self, tags: PackedStringArray) -> bool {
-        tags.as_slice()
-            .iter()
-            .any(|tag| self.tags.contains(&tag))
+        tags.as_slice().iter().any(|tag| self.tags.contains(&tag))
     }
 
     #[func]
     pub fn has_none_tags(&self, tags: PackedStringArray) -> bool {
-        tags.as_slice()
-            .iter()
-            .all(|tag| !self.tags.contains(&tag))
+        tags.as_slice().iter().all(|tag| !self.tags.contains(&tag))
     }
 
     #[func]
     pub fn none(&self, predicate: Callable) -> bool {
-        self.tags
-            .as_slice()
-            .iter()
-            .all(|tag| {
-                let mut args = VariantArray::new();
+        self.tags.as_slice().iter().all(|tag| {
+            let mut args = VariantArray::new();
 
-                args.push(tag.to_variant());
+            args.push(tag.to_variant());
 
-                !predicate.callv(args).booleanize()
-            })
+            !predicate.callv(args).booleanize()
+        })
     }
 
     #[func]
-    pub fn replace_tag(&mut self, old_tag: String, new_tag: String) {
+    pub fn replace_tag(&mut self, old_tag: String, new_tag: String) -> bool {
         if let Some(index) = self
             .tags
             .as_slice()
@@ -152,11 +150,19 @@ impl TagDictionary {
         {
             self.tags[index] = new_tag.into();
             self.base_mut().emit_changed();
+
+            return true;
         }
+
+        false
     }
 
     #[func]
-    pub fn replace_tags(&mut self, old_tags: PackedStringArray, new_tags: PackedStringArray) {
+    pub fn replace_tags(
+        &mut self,
+        old_tags: PackedStringArray,
+        new_tags: PackedStringArray,
+    ) -> u64 {
         let mut count = 0;
 
         for old_tag in old_tags.as_slice() {
@@ -171,18 +177,24 @@ impl TagDictionary {
         if count > 0 {
             self.base_mut().emit_changed();
         }
+
+        count
     }
 
     #[func]
-    pub fn remove_tag(&mut self, tag: GString) {
+    pub fn remove_tag(&mut self, tag: GString) -> bool {
         if let Some(index) = self.tags.as_slice().iter().position(|t| tag.eq(t)) {
             self.tags.remove(index);
             self.base_mut().emit_changed();
+
+            return true;
         }
+
+        false
     }
 
     #[func]
-    pub fn remove_path(&mut self, path: String) {
+    pub fn remove_path(&mut self, path: String) -> u64 {
         let mut count = 0;
 
         for tag in self.tags.clone().as_slice() {
@@ -195,24 +207,23 @@ impl TagDictionary {
         if count > 0 {
             self.base_mut().emit_changed();
         }
+
+        count
     }
 
     #[func]
     pub fn some(&self, predicate: Callable) -> bool {
-        self.tags
-            .as_slice()
-            .iter()
-            .any(|tag| {
-                let mut args = VariantArray::new();
+        self.tags.as_slice().iter().any(|tag| {
+            let mut args = VariantArray::new();
 
-                args.push(tag.to_variant());
+            args.push(tag.to_variant());
 
-                predicate.callv(args).booleanize()
-            })
+            predicate.callv(args).booleanize()
+        })
     }
 
     #[func]
-    pub fn update_path(&mut self, old_path: String, new_path: String) {
+    pub fn update_path(&mut self, old_path: String, new_path: String) -> u64 {
         let mut count = 0;
 
         for tag in self.tags.clone().as_slice() {
@@ -226,5 +237,7 @@ impl TagDictionary {
         if count > 0 {
             self.base_mut().emit_changed();
         }
+
+        count
     }
 }
