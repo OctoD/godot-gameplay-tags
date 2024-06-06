@@ -36,10 +36,25 @@ impl TagDictionaryEditorInspectorPlugin {
 
             if let Some(mut f) = FileAccess::open(
                 td.get_path().to_string().replace("tres", "csv").into(),
-                ModeFlags::READ_WRITE,
+                ModeFlags::WRITE,
             ) {
                 f.store_string(GString::from(output));
                 f.close();
+                godot::global::print(&[
+                    "Exported tag dictionary to: ".to_variant(),
+                    td.get_path()
+                        .to_string()
+                        .replace("tres", "csv")
+                        .to_variant(),
+                ]);
+            } else {
+                godot::global::printerr(&[
+                    "Failed to open file for writing: ".to_variant(),
+                    td.get_path()
+                        .to_string()
+                        .replace("tres", "csv")
+                        .to_variant(),
+                ]);
             }
         }
     }
