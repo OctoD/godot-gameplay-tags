@@ -25,7 +25,7 @@ jobs:
     - name: Deploy artifacts to GitHub
       uses: actions/upload-artifact@v4
       with:
-        name: godot-gameplay-tags.ubuntu
+        name: demo-gameplay-tags.ubuntu
         if-no-files-found: error
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
@@ -46,7 +46,7 @@ jobs:
     - name: Deploy artifacts to GitHub
       uses: actions/upload-artifact@v4
       with:
-        name: godot-gameplay-tags.macos
+        name: demo-gameplay-tags.macos
         if-no-files-found: error
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
@@ -67,7 +67,7 @@ jobs:
     - name: Deploy artifacts to GitHub
       uses: actions/upload-artifact@v4
       with:
-        name: godot-gameplay-tags.windows
+        name: demo-gameplay-tags.windows
         if-no-files-found: error
         path: |
           godot/addons/godot_gameplay_tags/godot_gameplay_tags.gdextension
