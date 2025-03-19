@@ -84,16 +84,16 @@ Dictionary TagDictionary::get_tree() const
 	{
 		const String &tag = sorted_tags[i];
 		PackedStringArray chunks = tag.split(".");
-		Dictionary *current = &root;
+		Dictionary current = root;
 
 		for (int j = 0; j < chunks.size(); j++)
 		{
 			const String &chunk = chunks[j];
 
-			if (!current->has(chunk))
+			if (!current.has(chunk))
 			{
 				const Dictionary new_node;
-				(*current)[chunk] = new_node;
+				current[chunk] = new_node;
 			}
 
 			current = current[chunk];

@@ -17,3 +17,25 @@ Cargo.lock
 # 
 export/
 export_presets.cfg
+
+# ignores for IDEs
+.idea
+.vscode
+.vs
+
+# build files
+build
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+
+# cmake related files
+cmake-build-debug
+cmake-build-release
+
+# godot related files
+.godot
+*.import
+*.uid
