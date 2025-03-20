@@ -21,6 +21,10 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES}
         TagDictionary.h
         editor/TagDictionaryFS.cpp
         editor/TagDictionaryFS.h
+        editor/docks/NodeTaggingDock.cpp
+        editor/docks/NodeTaggingDock.h
+        editor/controls/TagTree.cpp
+        editor/controls/TagTree.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE "src")

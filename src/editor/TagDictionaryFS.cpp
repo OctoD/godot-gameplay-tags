@@ -4,15 +4,45 @@
 
 #include "TagDictionaryFS.h"
 #include <godot_cpp/classes/dir_access.hpp>
+#include <godot_cpp/classes/resource_loader.hpp>
 
 using namespace octod::gameplay::tags::editor;
 
+static TagDictionaryFS *singleton = nullptr;
+
+TagDictionaryFS * TagDictionaryFS::get_singleton()
+{
+	if (singleton == nullptr)
+	{
+		singleton = memnew(TagDictionaryFS);
+	}
+
+	return singleton;
+}
+
 TypedArray<octod::gameplay::tags::TagDictionary> TagDictionaryFS::get_dictionaries() const
 {
+	return dictionaries;
 }
 
 void TagDictionaryFS::scan_file_system(const String &p_from_directory)
 {
+	PackedStringArray resources = _read_directory_recursive(p_from_directory);
+	ResourceLoader *resource_loader = ResourceLoader::get_singleton();
+
+	for (int i = 0; i < resources.size(); i++)
+	{
+		if (const String& res_path = resources[i]; res_path.ends_with(".res") || res_path.ends_with(".tres"))
+		{
+			if (Ref<Resource> resource = resource_loader->load(res_path); resource.is_valid())
+			{
+				if (const TagDictionary *maybe_tag_dictionary = cast_to<TagDictionary>(resource.ptr()); maybe_tag_dictionary != nullptr)
+				{
+					dictionaries.push_back(maybe_tag_dictionary);
+				}
+			}
+		}
+	}
 }
 
 void TagDictionaryFS::_bind_methods()

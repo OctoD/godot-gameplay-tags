@@ -5,7 +5,7 @@ use godot::{
 
 use crate::tag_dictionary::{TagDictionary, SPLIT_CHAR};
 
-const TAG_PATH_META: &str = "ggt_tag_dictionary_path";
+    const TAG_PATH_META: &str = "ggt_tag_dictionary_path";
 
 #[derive(GodotClass)]
 #[class(tool, init, base = Tree)]

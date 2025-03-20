@@ -6,6 +6,8 @@
 
 using namespace octod::gameplay::tags;
 
+const char * TagDictionary::SPLIT_CHAR = ".";
+
 bool TagDictionary::add_tag(const String &p_tag)
 {
 	if (has_tag(p_tag))

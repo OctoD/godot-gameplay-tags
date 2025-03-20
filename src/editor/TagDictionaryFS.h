@@ -19,6 +19,9 @@ namespace octod::gameplay::tags::editor
 		GDCLASS(TagDictionaryFS, RefCounted)
 
 	public:
+		/// @brief Returns the singleton instance.
+		static TagDictionaryFS *get_singleton();
+
 		/// @brief Returns the tag dictionaries.
 		[[nodiscard]] TypedArray<TagDictionary> get_dictionaries() const;
 

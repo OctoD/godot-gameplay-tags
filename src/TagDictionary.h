@@ -18,6 +18,8 @@ namespace octod::gameplay::tags
 		GDCLASS(TagDictionary, Resource)
 
 	public:
+		static const char *SPLIT_CHAR;
+
 		/// @brief Adds a tag to the dictionary.
 		/// @returns True if the tag was added, false otherwise.
 		bool add_tag(const String &p_tag);
