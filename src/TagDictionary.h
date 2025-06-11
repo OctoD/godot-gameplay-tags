@@ -38,6 +38,10 @@ namespace octod::gameplay::tags
 		/// @returns The tags that match the predicate.
 		[[nodiscard]] PackedStringArray find(const Callable &p_predicate) const;
 
+		/// @brief Returns tags stored in the TagDictionary.
+		/// @returns The tags stored in the TagDictionary.
+		[[nodiscard]] PackedStringArray get_tags() const;
+
 		/// @brief Returns the tags associated with a path.
 		/// @param p_path The path to get the tags from.
 		/// @returns The tags associated with the path.

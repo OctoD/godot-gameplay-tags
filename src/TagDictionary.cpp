@@ -61,6 +61,11 @@ PackedStringArray TagDictionary::find(const Callable &p_predicate) const
 	return result;
 }
 
+PackedStringArray TagDictionary::get_tags() const
+{
+	return tags;
+}
+
 PackedStringArray TagDictionary::get_tags_from_path(const String &p_path) const
 {
 	PackedStringArray result;
@@ -267,6 +272,7 @@ void TagDictionary::_bind_methods()
 	/// binds methods to godot
 	ClassDB::bind_method(D_METHOD("add_tag", "string"), &TagDictionary::add_tag);
 	ClassDB::bind_method(D_METHOD("find", "callable"), &TagDictionary::find);
+	ClassDB::bind_method(D_METHOD("get_tags"), &TagDictionary::get_tags);
 	ClassDB::bind_method(D_METHOD("get_tags_from_path", "string"), &TagDictionary::get_tags_from_path);
 	ClassDB::bind_method(D_METHOD("get_tree"), &TagDictionary::get_tree);
 	ClassDB::bind_method(D_METHOD("has_path", "string"), &TagDictionary::has_path);

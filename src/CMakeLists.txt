@@ -25,6 +25,8 @@ add_library(${PROJECT_NAME} SHARED ${SOURCES}
         editor/docks/NodeTaggingDock.h
         editor/controls/TagTree.cpp
         editor/controls/TagTree.h
+        editor/inspector_plugins/TagDictionaryEditorInspectorPlugin.cpp
+        editor/inspector_plugins/TagDictionaryEditorInspectorPlugin.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE "src")
